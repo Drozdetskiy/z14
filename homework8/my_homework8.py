@@ -10,8 +10,12 @@ class WrongValueError(Exception):
 
 
 class Figure:
-    def __init__(self, name):
+    def __init__(self, name, **kwargs):
+        for i in kwargs:
+            if kwargs[i] <= 0:
+                raise WrongValueError
         self.name = name
+        self.kwargs = kwargs
 
     def __gt__(self, other):
         return self.square() > other.square()
@@ -42,58 +46,40 @@ class Figure:
 
 
 class Triangle(Figure):
-    def __init__(self, name, a, b, c):
-        if a + b <= c or b + c <= a or a + c <= b:
+    def __init__(self, name, **kwargs):
+        if kwargs['a'] + kwargs['b'] <= kwargs['c']\
+                or kwargs['b'] + kwargs['c'] <= kwargs['a']\
+                or kwargs['a'] + kwargs['c'] <= kwargs['b']:
             raise InvalidGeometry
-
-        if (a or b or c) <= 0:
-            raise WrongValueError
-
-        super().__init__(name)
-        self.a = a
-        self.b = b
-        self.c = c
+        super().__init__(name, **kwargs)
 
     def square(self):
         _half_perimeter = self.perimeter()/2
         return (_half_perimeter *
-                (_half_perimeter - self.a) *
-                (_half_perimeter - self.b) *
-                (_half_perimeter - self.c)) ** 0.5
+                (_half_perimeter - self.kwargs['a']) *
+                (_half_perimeter - self.kwargs['b']) *
+                (_half_perimeter - self.kwargs['c'])) ** 0.5
 
     def perimeter(self):
-        return self.a + self.b + self.c
+        return self.kwargs['a'] + self.kwargs['b'] + self.kwargs['c']
 
 
 class Circle(Figure):
-    def __init__(self, name, r):
-        if r <= 0:
-            raise WrongValueError
-
-        super().__init__(name)
-        self.r = r
 
     def square(self):
-        return pi * self.r ** 2
+        return pi * self.kwargs['r'] ** 2
 
     def perimeter(self):
-        return 2*pi*self.r
+        return 2*pi*self.kwargs['r']
 
 
 class Rectangle(Figure):
-    def __init__(self, name, a, b):
-        if (a or b) <= 0:
-            raise WrongValueError
-
-        super().__init__(name)
-        self.a = a
-        self.b = b
 
     def square(self):
-        return self.a * self.b
+        return self.kwargs['a'] * self.kwargs['b']
 
     def perimeter(self):
-        return (self.a + self.b) * 2
+        return (self.kwargs['a'] + self.kwargs['b']) * 2
 
 
 if __name__ == '__main__':
