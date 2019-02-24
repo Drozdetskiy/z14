@@ -66,3 +66,4 @@ print(u1.age)
 print(u1.first_name)
 del u1.first_name
 print('Deleter', u1.first_name)
+
