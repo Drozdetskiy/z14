@@ -1,0 +1,10 @@
+<root>
+   <item2>Hello</item2>
+      <author>1</author>
+      <description>2</description>
+   </item>
+   <item>
+      <publish_date>1</publish_date>
+      <description>2</description>
+   </item>
+</root>

@@ -10,14 +10,14 @@
   - <file_name>.bin - лежит объект, упакованный при помощи pickle
 2) Перегнать данные из одного файла в другой соблюдая тип данных
 Пример:
-python homework6.py data.json data.csv
-из json который лежит в data.json сделать csv и положить в файл data.csv
+python homework6.py testdata.json testdata.csv
+из json который лежит в testdata.json сделать csv и положить в файл testdata.csv
 
 PS: для проверки существования файла можно использовать os.path.exists(<path>)
 3) Второй файл в аргументе может быть не указан.
-python homework6.py data.json
+python homework6.py testdata.json
 
-Если второй аргумент не указан, то данные из файла data.json вывести на экран в
+Если второй аргумент не указан, то данные из файла testdata.json вывести на экран в
 виде питоновского объекта.
 
 
