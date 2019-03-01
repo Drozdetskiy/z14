@@ -9,9 +9,9 @@ class Number:
 
 
 def max_number(_list):
-        return int(''.join(map(
-            lambda x: str(x.number),
-            sorted((Number(i) for i in _list), reverse=True))))\
+        return int(
+            ''.join(map(str, sorted(_list, key=Number, reverse=True)))
+        )\
             if _list else None
 
 
